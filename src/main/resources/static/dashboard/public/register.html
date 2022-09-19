@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homebanking | Registrate</title>
+
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/0.0.0-insiders.4a070ac/tailwind.min.css" integrity="sha512-vJu7D5BpjnNXVpLBrl9LKLvmXBNjiLwge8EOZ/YS9XwiChpfKLAlydwIZvoJaDE3LI/kr3goH0MzDzNbBgyoOQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+
+    <link rel="stylesheet" href="output.css">
+</head>
+
+<body>
+    <div id="app" class="h-screen min-h-screen max-h-screen bg-blue-50 flex justify-center items-center p-4">
+        <div class="bg-white shadow w-full p-4 rounded shadow-2xl text-gray-700 sm:w-96">
+            <div class="flex justify-end">
+                <img src="https://www.ns-logo.com/wp-content/uploads/2020/07/logo-icon-png-8.png" alt="" class="w-8">
+            </div>
+
+            <p class="text-center pb-2 text-3xl">Bienvenido</p>
+
+
+            <form @submit.prevent="register()" action="#" class="my-5">
+                <div class="pb-5 text-sm text-center">
+                    <p>Ya tenes cuenta? <a href="./index.html" class="text-blue-500">Iniciar sesion!</a></p>
+                </div>
+
+                <div class="pb-5">
+                    <input v-model="firstName" type="text"
+                        class="block w-full p-2 rounded shadow bg-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none"
+                        placeholder="Nombre">
+                </div>
+
+                <div class="pb-5">
+                    <input v-model="lastName" type="text"
+                        class="block w-full p-2 rounded shadow bg-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none"
+                        placeholder="Apellido">
+                </div>
+
+                <div class="pb-5">
+                    <input v-model="email" type="text"
+                        class="block w-full p-2 rounded shadow bg-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none"
+                        placeholder="Email">
+                </div>
+
+                <div class="pb-5">
+                    <input v-model="password" type="password"
+                        class="block w-full p-2 rounded shadow bg-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none"
+                        placeholder="Contraseña">
+                </div>
+
+                <div class="pb-5">
+                    <input type="password" v-model="confirmPassword"
+                        class="block w-full p-2 rounded shadow bg-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none"
+                        placeholder="Repetir contraseña">
+                </div>
+
+                <button type="submit" class="bg-blue-500 p-2 w-full text-white rounded">Registrate</button>
+            </form>
+            
+            <hr>
+
+            <div class="mt-8 relative flex justify-around">
+                <div class="bg-blue-800 h-12 w-12 flex justify-center items-center rounded-full text-white">
+                    <i class="fab fa-facebook text-3xl"></i>
+                </div>
+                <div class="bg-blue-500 h-12 w-12 flex justify-center items-center rounded-full text-white">
+                    <i class="fab fa-twitter text-3xl"></i>
+                </div>
+
+                <div class="bg-red-500 h-12 w-12 flex justify-center items-center rounded-full text-white">
+                    <i class="fab fa-google text-3xl"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed bottom-0 right-0">
+        <button id="switchTheme">
+            <i classs="fab fa-codepen"></i>s
+        </button>
+    </div>
+</body>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>   
+    <script src="register.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</html>

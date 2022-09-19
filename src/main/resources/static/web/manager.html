@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div id="app" class="flex flex-col justify-center content-center flex-wrap">
+        <form action="" class="flex flex-col gap-5 items-center justify-center h-[20rem]">
+            <div class="relative w-[24rem]">
+                <label class="absolute left-0 top-1 cursor-text peer-focus:-top-4 peer-focus:text transition-all" for="name">Nombre</label>
+                <input v-model="clientName" type="text" name="" id="name" class="w-full focus:border-red-600 border-b py-1 focus:outline-none focus:border-b-2 peer transition-colors" autocomplete="off">
+            </div>
+            <div class="relative w-[24rem] ">
+                <label class="absolute left-0 top-1 cursor-text peer-focus:top-6 peer-focus:text transition-all" for="lastName">Apellido</label>
+                <input v-model="clientLastName" type="text" name="" id="lastName" class="w-full focus:border-red-600 border-b py-1 focus:outline-none focus:border-b-2 peer transition-colors" autocomplete="off">
+            </div>
+            <div class="relative w-[24rem]">
+                <label class="absolute left-0 top-1 cursor-text peer-focus:-top-4 peer-focus:text transition-all" for="email">Email</label>
+                <input v-model="clientMail" type="text" name="" id="email" class="w-full focus:border-red-600 border-b py-1 focus:outline-none focus:border-b-2 peer transition-colors" autocomplete="off">
+            </div>
+            <div class="flex justify-center align-center bg-red-900 border border-red-400 h-[50px] w-[25rem]">
+                <button @click="addClient" class="w-full text-white" type="submit">Submit</button>
+            </div>
+        </form>
+        <table class="bg-sky-600 w-[75%]">
+            <thead>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col"></th>
+            </thead>
+            <tbody class="text-center">
+                <tr v-for="client in clients">
+                    <td scope="col">{{client.clientName}}</td>
+                    <td scope="col" >{{client.clientLastName}}</td>
+                    <td scope="col">{{client.clientMail}}</td>
+                    <td><button @click="deleteClient(client._links.self.href, $event)">X</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./manager.js"></script>
+</body>
+</html>

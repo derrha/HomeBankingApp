@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homebanking</title>
+    <link rel="stylesheet" href="../public/style.css">
+    <link rel="stylesheet" href="../public/output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body id="app">
+    <aside
+        :class="offCanvas"
+        class="ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition-all duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
+        <div>
+            <div class="flex flex-row justify-between items-center -mx-6 px-6 py-4">
+                <a href="./accounts.html" title="home">
+                    <img src="../img/supremeBank-01.png" class="w-32" alt="tailus logo">
+                </a>
+                <button @click="toggleMenu" class="w-12 h-16 -mr-2 lg:hidden">
+                    <ion-icon class="text-xl font-bold" name="close-outline"></ion-icon>
+                </button>
+            </div>
+
+            <div class="mt-8 text-center">
+                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt=""
+                    class="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28">
+                <h5 class="hidden mt-4 text-xl font-semibold text-gray-600 lg:block">{{client.clientName}}
+                    {{client.clientLastName}}</h5>
+                <span class="hidden text-gray-400 lg:block">{{client.clientMail}}</span>
+            </div>
+
+            <ul class="space-y-2 tracking-wide mt-8">
+                <li>
+                    <a href="./accounts.html" aria-label="dashboard"
+                        class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
+                        <svg class="-ml-1 h-6 w-6" viewBox="0 0 24 24" fill="none">
+                            <path
+                                d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z"
+                                class="fill-current text-cyan-400 dark:fill-slate-600"></path>
+                            <path d="M13 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2V8Z"
+                                class="fill-current text-cyan-200 group-hover:text-cyan-300"></path>
+                            <path d="M13 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1Z"
+                                class="fill-current group-hover:text-sky-300"></path>
+                        </svg>
+                        <span class="-mr-1 font-medium">Inicio</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-sky-600 to-cyan-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path class="fill-current text-gray-300 group-hover:text-cyan-300"
+                                d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" />
+                            <path class="fill-current text-gray-600 group-hover:text-cyan-600" fill-rule="evenodd"
+                                d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span class="group-hover:text-gray-700">Tarjetas</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./transfer.html"
+                        class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path class="fill-current text-gray-300 group-hover:text-cyan-300"
+                                d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" />
+                            <path class="fill-current text-gray-600 group-hover:text-cyan-600" fill-rule="evenodd"
+                                d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span class="group-hover:text-gray-700">Préstamos</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="px-6 -mx-6 pt-4 flex justify-between items-center border-t">
+            <button @click="logOut" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+                <span class="group-hover:text-gray-700">Salir</span>
+            </button>
+        </div>
+    </aside>
+    <div class="bg-blue-50 ml-auto mb-6 lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
+        <div class="sticky top-0 h-16 border-b bg-white lg:py-2.5">
+            <div class="px-6 flex items-center justify-between space-x-4 2xl:container">
+                <h5 hidden class="text-2xl text-gray-600 font-medium lg:block">Crear tarjeta</h5>
+                <button @click="toggleMenu" class="w-12 h-16 -mr-2 border-r lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 my-auto" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                <div class="flex space-x-4">
+                    <button aria-label="search"
+                        class="w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200 md:hidden">
+                        <svg xmlns="http://ww50w3.org/2000/svg" class="w-4 mx-auto fill-current text-gray-600"
+                            viewBox="0 0 35.997 36.004">
+                            <path id="Icon_awesome-search" data-name="search"
+                                d="M35.508,31.127l-7.01-7.01a1.686,1.686,0,0,0-1.2-.492H26.156a14.618,14.618,0,1,0-2.531,2.531V27.3a1.686,1.686,0,0,0,.492,1.2l7.01,7.01a1.681,1.681,0,0,0,2.384,0l1.99-1.99a1.7,1.7,0,0,0,.007-2.391Zm-20.883-7.5a9,9,0,1,1,9-9A8.995,8.995,0,0,1,14.625,23.625Z">
+                            </path>
+                        </svg>
+                    </button>
+                    <button aria-label="chat"
+                        class="w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 m-auto text-gray-600" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                        </svg>
+                    </button>
+                    <button aria-label="notification"
+                        class="w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 m-auto text-gray-600" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path
+                                d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col">
+            <div class="bg-blue-50 min-h-screen flex gap-10 p-5 bg-cards">
+                <form class="bg-white w-screen lg:w-[50%] h-[400px] shadow flex flex-col md:flex-row flex-wrap items-center justify-center">
+                    <div class="w-[40%] flex flex-col items-center space-y-1.5" role="radiogroup">
+                        <legend class="text-2xl font-medium">Tipo de tarjeta</legend>
+                        <div class="flex items-center space-x-1.5">
+                            <input v-if="creditCards.length < 3" v-model="inputCardType" id="credit" type="radio" name="type" value="CREDIT"
+                                class="cursor-pointer rounded-full border-gray-300 text-blue-600 transition focus:ring-blue-600 disabled:cursor-not-allowed disabled:bg-gray-200 disabled:opacity-75">
+                            <input v-else disabled v-model="inputCardType" id="credit" type="radio" name="type" value="CREDIT"
+                                class="cursor-pointer rounded-full border-gray-300 text-blue-600 transition focus:ring-blue-600 disabled:cursor-not-allowed disabled:bg-gray-200 disabled:opacity-75">
+                            <label for="credit" class=" text-xl cursor-pointer truncate font-medium text-gray-500">
+                                Crédito</label>
+                        </div>
+                        <span v-if="creditCards.length >= 3" class="text-sm text-red-400">Ya tienes 3 tarjetas de este tipo</span>
+                        <div class="inline-flex items-center space-x-1.5">
+                            <input v-if="debitCards.length < 3" v-model="inputCardType" id="debit" type="radio" name="type" value="DEBIT"
+                                class="cursor-pointer rounded-full border-gray-300 text-blue-600 transition focus:ring-blue-600 disabled:cursor-not-allowed disabled:bg-gray-200 disabled:opacity-75">
+                            <input v-else disabled v-model="inputCardType" id="debit" type="radio" name="type" value="DEBIT"
+                                class="cursor-pointer rounded-full border-gray-300 text-blue-600 transition focus:ring-blue-600 disabled:cursor-not-allowed disabled:bg-gray-200 disabled:opacity-75">
+                            <label for="debit" class="cursor-pointer truncate text-xl font-medium text-gray-500">
+                                Débito
+                            </label>
+                        </div>
+                        <span v-if="debitCards.length >= 3" class="text-sm text-red-400">Ya tienes 3 tarjetas de este tipo</span> 
+                    </div>
+                    <div class="w-[40%] pt-10 flex flex-col space-y-1.5 gap-3 items-center" role="radiogroup">
+                        <legend class="text-2xl font-medium">Color</legend>
+                        <div class="inline-flex items-center space-x-1.5">
+                            <input v-model="inputCardColor" id="silver" type="radio" name="color" value="SILVER"
+                                class="cursor-pointer rounded-full border-gray-300 text-blue-600 transition focus:ring-blue-600 disabled:cursor-not-allowed disabled:bg-gray-200 disabled:opacity-75">
+                            <label for="silver" class="cursor-pointer truncate text-xl font-medium text-gray-500">
+                                Silver</label>
+                        </div>
+                        <div class="inline-flex items-center space-x-1.5">
+                            <input v-model="inputCardColor" id="gold" type="radio" name="color" value="GOLD"
+                                class="cursor-pointer rounded-full border-gray-300 text-blue-600 transition focus:ring-blue-600 disabled:cursor-not-allowed disabled:bg-gray-200 disabled:opacity-75">
+                            <label for="gold" class="cursor-pointer truncate text-xl font-medium text-gray-500">
+                                Gold
+                            </label>
+                        </div>
+                        <div class="inline-flex items-center space-x-1.5">
+                            <input v-model="inputCardColor" id="titanium" type="radio" name="color" value="TITANIUM"
+                                class="cursor-pointer rounded-full border-gray-300 text-blue-600 transition focus:ring-blue-600 disabled:cursor-not-allowed disabled:bg-gray-200 disabled:opacity-75">
+                            <label for="titanium" class="cursor-pointer truncate text-xl font-medium text-gray-500">
+                                Titanium
+                            </label>
+                        </div>
+                    </div>
+                    <div class="flex p-5 justify-center items-center w-screen text-white">
+                        <button @click="createCard" type="button"
+                            class="w-[75%] bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                            Crear tarjeta
+                        </button>
+                        <button @click="cancelCreateCard" type="button"
+                            class="w-[15%] text-white bg-gradient-to-r from-red-600 to-red-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                            X
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="create-card.js"></script>
+</body>
+
+</html>

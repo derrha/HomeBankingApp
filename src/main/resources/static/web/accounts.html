@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accounts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <header>
+        <nav class="p-5 bg-white shadow md:flex md:items-center md:justify-center sticky top-0 z-10">
+                <h1 class="pr-5 text-2xl font-bold">LOGO</h1>
+                <span class="text-xl cursor-pointer mx-2 md:hidden block">
+                    <ion-icon name="menu" onclick="Menu(this)"></ion-icon>
+                </span>
+                <ul class="md:flex  md:items-center z-[-1] md:z-auto md:static absolute bg-white w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500">
+                    <li class="mx-4 my-6 md:my-0">
+                        <a class="text-xl hover:text-red-600 hover:border-b hover:border-red-600 duration-200" href="#">Inicio</a>
+                    </li>
+                    <li class="mx-4 my-6 md:my-0">
+                        <a class="text-xl hover:text-red-600 border-b border-red-600 duration-200" href="#">Cuenta</a>
+                    </li>
+                    <li class="mx-4 my-6 md:my-0">
+                        <a class="text-xl hover:text-red-600 hover:border-b hover:border-red-600 duration-200" href="#">Tarjetas</a>
+                    </li>
+                    <li class="mx-4 my-6 md:my-0">
+                        <a class="text-xl hover:text-red-600 hover:border-b hover:border-red-600 duration-200" href="#">Otros Productos</a>
+                    </li>
+                    <li class="mx-4 my-6 md:my-0">
+                        <a class="text-xl hover:text-red-600 hover:border-b hover:border-red-600 duration-200" href="#">Beneficios</a>
+                    </li>
+                </ul>
+        </nav>
+    </header>
+    <div id="app" class="flex flex-col md:flex-row min-h-[80vh] bg-green-900">
+        <div class="h-[100vh] bg-slate-900 w-[20%] flex flex-col">
+            <h1 class="text-2xl text-white p-5 cursor-default shadow">{{client.clientName}} {{client.clientLastName}}</h1>
+            <h1 class="text-2xl text-white p-5 cursor-default shadow">{{client.clientMail}}</h1>
+            <div class="p-5 cursor-default">
+                <h1 class="text-2xl text-white shadow">Cuentas</h1>
+                <div class="text-xl text-white italic flex gap-5 bg-green-600 justify-around">
+                    <h3>{{client.accounts[0].userNumber}}</h3>
+                    <h3>Balance: ${{client.accounts[0].balance}}</h3>
+                </div>
+                <div class="text-xl text-white italic flex gap-5 bg-green-600 justify-around">
+                    <h3>{{client.accounts[1].userNumber}}</h3>
+                    <h3>Balance: ${{client.accounts[1].balance}}</h3>
+                </div>
+            </div>
+        </div>
+        <div></div>
+    </div>
+    
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="accounts.js"></script>
+</body>
+</html>
