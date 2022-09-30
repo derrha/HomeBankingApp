@@ -32,8 +32,6 @@ public class LoanControllers {
     @Autowired
     private TransactionService transactionService;
 
-
-
     @GetMapping("/loans")
     public List<LoanDTO> getLoans(){
         return loanService.getAllLoans().stream().map(LoanDTO::new).collect(Collectors.toList());
@@ -43,12 +41,10 @@ public class LoanControllers {
         return new LoanDTO(loanService.getLoanById(id));
     }
 
-
-
     @Transactional
     @PostMapping("/loans")
     public ResponseEntity<Object> createLoan(Authentication authentication, @RequestBody LoanApplicationDTO loanApplication){
-        if (loanApplication.getPayments() != 0 || loanApplication.getPayments() != 0 ) {
+        if (loanApplication.getPayments() != 0) {
             Loan loan = loanService.getLoanById(loanApplication.getId());
             if (loan != null) {
                 if (loanApplication.getAmount() <= loan.getMaxAmount()) {
